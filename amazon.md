@@ -42,6 +42,52 @@ Por esta razón se decidió revisar duplicados con base en el **product_id**.
 
 Finalmente, posterior a la limpieza de nulos y duplicados en esta tabla, se obtuvieron **1351** filas y **8** columnas.
 
-# **Filtrar datos fuera del alcance**
+# **Detección y tratamiento de valores fuera de alcance**
 
-Se revisaron outliers, inconsistencias o valores que no sirven para responder las preguntas planteadas.
+Se revisaron columnas clave para detectar inconsistencias:
+
+- rating:
+
+  - Se esperaba rango de 1 a 5.
+  - Se confirmó la existencia de un valor NaN.
+
+- actual_price y discounted_price:
+
+  - Se verificó que no existieran precios negativos o inconsistencias.
+  - Se comprobó que el discounted_price siempre fuera menor o igual al actual_price.
+
+- discount_percentage:
+
+  - Se calcularon valores esperados y se revisó la distribución para evitar porcentajes mayores al 100% o negativos.
+
+- rating_count:
+  - Se identificó que representa la cantidad de usuarios que han puntuado un producto.
+  - Los valores mínimos fueron 0 (productos sin reseñas) y el máximo quedó abierto (sin límite superior).
+  - Se decidió filtrar productos con rating_count > 0 en análisis donde se requiera información confiable.
+
+# 📊 Flujo de trabajo del análisis
+
+1. Dataset de productos → limpieza → productos limpios (productos_limpios.csv).
+2. Dataset de reseñas → limpieza → reseñas limpias (reseñas_limpias.csv).
+3. Ambos se unen por `product_id`.
+4. Resultado: dataset combinado (productos_reseñas.csv).
+
+# Unión de tablas
+
+Se unieron las tablas de productos y reseñas mediante la columna product_id, generando un dataset consolidado que permite responder directamente las preguntas planteadas.
+
+Tabla de productos: 1351 filas × 7 columnas.
+
+Tabla de reseñas: 1351 filas × 8 columnas.
+
+Tabla final combinada: 1351 filas × 10 columnas (conservando únicamente variables relevantes para el análisis).
+
+## Normalización de categorías y nombres de productos
+
+Para facilitar el análisis por categorías y evitar excesiva granularidad:
+
+Se creó una nueva columna **category_main**, que contiene solo el primer nivel de la categoría (antes del primer |). Esto permite agrupar productos de manera general sin perder la información completa, que se mantiene en la columna original category por si se desea un análisis más detallado en el futuro.
+
+La columna product_name se mantuvo tal cual, conservando toda la descripción del producto. Esto permite identificar los productos de manera única y no perder información relevante de atributos que podrían aparecer en el nombre (como tamaño, color, modelo, etc.). Se intentó extraer la marca, y se creó una columna brand a partir de las primeras dos palabras de product_name, sin embargo, algunas marcas pueden no estar perfectamente capturadas si no están al inicio del nombre del producto.
+
+> Nota: Esta normalización facilita el análisis exploratorio y la agregación por categorías principales, pero mantiene la posibilidad de análisis más específico si se requiere.
