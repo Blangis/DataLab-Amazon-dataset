@@ -4,17 +4,17 @@
 
 Se busca responder:
 
-- ¿Qué productos o categorías generan mayor satisfacción? → Promedio de rating por producto o categoría.
+- ¿Qué tipos de productos se manejan en amazon?
 
-- ¿Qué categorías tienen los precios promedio más altos, más bajos y mayores descuentos? → Agregando actual_price, discounted_price y discount_percentage.
+- ¿Las marcas con más productos son también las mejor calificadas?
 
-- ¿Existe relación entre porcentaje de descuento y calificación promedio? → Comparando columnas numéricas ya agregadas por producto.
+- ¿Qué categorías tienen los precios promedio más altos, más bajos y mayores descuentos?
 
-- ¿La diferencia entre precio real y precio con descuento está asociada a una mejor percepción del cliente? → Columna actual_price - discounted_price vs promedio rating.
+- ¿Existe relación entre porcentaje de descuento y calificación promedio?
 
-- ¿Los productos más populares son también los mejor valorados? → Número de reseñas por producto vs promedio de rating.
+- ¿Existe relación entre cantidad de reseñas y puntuación?
 
-- Patrones en reseñas positivas/negativas → Podrías hacer análisis de sentimiento concatenando todas las reseñas por producto y luego viendo tendencias por categoría.
+- ¿Cuáles son los productos mejor evaluados en cada rango de precio?
 
 # Productos
 
@@ -78,9 +78,9 @@ Se unieron las tablas de productos y reseñas mediante la columna product_id, ge
 
 Tabla de productos: 1351 filas × 7 columnas.
 
-Tabla de reseñas: 1351 filas × 8 columnas.
+Tabla de reseñas: 1186 filas × 8 columnas.
 
-Tabla final combinada: 1351 filas × 10 columnas (conservando únicamente variables relevantes para el análisis).
+Tabla final combinada: 1186 filas × 10 columnas (conservando únicamente variables relevantes para el análisis).
 
 ## Normalización de categorías y nombres de productos
 
@@ -90,4 +90,55 @@ Se creó una nueva columna **category_main**, que contiene solo el primer nivel 
 
 La columna product_name se mantuvo tal cual, conservando toda la descripción del producto. Esto permite identificar los productos de manera única y no perder información relevante de atributos que podrían aparecer en el nombre (como tamaño, color, modelo, etc.). Se intentó extraer la marca, y se creó una columna brand a partir de las primeras dos palabras de product_name, sin embargo, algunas marcas pueden no estar perfectamente capturadas si no están al inicio del nombre del producto.
 
+Tabla limpia: 1186 filas x 12 columnas
+
 > Nota: Esta normalización facilita el análisis exploratorio y la agregación por categorías principales, pero mantiene la posibilidad de análisis más específico si se requiere.
+
+## Casteo y datos fuera de alcance
+
+- rating y rating_count se convirtieron a números. ✅
+
+- No hay nulos en los precios → ✅
+- No hay precios <= 0 → ✅
+- No hay casos absurdos (discounted_price > actual_price) → ✅
+- Puntajes entre 1 a 5 → Un valor NaN, los demás (1185) correctos.
+- rating_count mayores a cero. → ✅
+
+Se decidió agrupar por categorías principales y marcas, para conocer diferentes hallazgos de nuestro dataset.
+
+## Insights
+
+Contamos con 9 categorías únicas principales, de las cuales podemos identificar cuáles tiene más cantidad de productos.
+
+<img src="./visualizaciones/categorias.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+<br>
+
+<img src="./visualizaciones/top3categoriasproductos.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+<br>
+
+<img src="./visualizaciones/marcas_satisfaccion.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+<br>
+
+<img src="./visualizaciones/top5_por_categoria.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+<br>
+
+<img src="./visualizaciones/productos_vs_rating.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+El número de productos que ofrece una marca no muestra relación con la calificación promedio de sus productos. Algunas marcas con gran variedad no necesariamente son las mejor evaluadas.
+
+<br>
+<img src="./visualizaciones/descuento_vs_rating.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+<br>
+
+<img src="./visualizaciones/categorias_precios.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+- Precio promedio más alto → La categoría cuyos productos tienen el mayor valor en el mercado (lujo o alta gama).
+
+- Precio promedio más bajo → La categoría más accesible en términos de costo.
+
+- Mayor descuento promedio → La categoría donde las ofertas/promociones son más agresivas, lo que puede indicar alta competencia o estrategias de marketing.
