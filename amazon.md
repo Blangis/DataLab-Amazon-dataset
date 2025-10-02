@@ -12,7 +12,7 @@ Se busca responder:
 
 - [¿Existe relación entre porcentaje de descuento y calificación promedio?](#porcentaje-de-descuento-y-puntuaciones)
 
-- [¿Existe relación entre cantidad de reseñas y puntuación?]()
+- [¿Existe relación entre cantidad de reseñas y puntuación?](#número-de-reseñas-y-puntuaciones)
 
 # Productos
 
