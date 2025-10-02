@@ -4,15 +4,15 @@
 
 Se busca responder:
 
-- ¿Qué tipos de productos se manejan en amazon?
+- [¿Qué tipos de productos se manejan en este dataset de amazon?](#categorías-principales)
 
-- ¿Las marcas con más productos son también las mejor calificadas?
+- [¿Las marcas con más productos son también las mejor calificadas?](#top-15-marcas-y-sus-puntuaciones-promedio)
 
-- ¿Qué categorías tienen los precios promedio más altos, más bajos y mayores descuentos?
+- [¿Qué categorías tienen los precios promedio más altos, más bajos y mayores descuentos?](#categorías-con-precios-promedio)
 
-- ¿Existe relación entre porcentaje de descuento y calificación promedio?
+- [¿Existe relación entre porcentaje de descuento y calificación promedio?](#porcentaje-de-descuento-y-puntuaciones)
 
-- ¿Existe relación entre cantidad de reseñas y puntuación?
+- [¿Existe relación entre cantidad de reseñas y puntuación?]()
 
 - ¿Cuáles son los productos mejor evaluados en cada rango de precio?
 
@@ -36,11 +36,11 @@ Se revisaron los identificadores en el dataset de reviews (reseñas) para identi
 
 - **review_id** identifica cada reseña individual, pero para nuestro análisis agregado por producto, nos interesa una fila por producto, consolidando la información de todas sus reseñas.
 
-Por esta razón se decidió revisar duplicados con base en el **product_id**.
+Al revisar duplicados en review_id, identifiqué que había reseñas iguales asignados a diferentes product_id's, esto porque se trataba del mismo producto con ligeras diferencias (color, memoria, etc), sin embargo, al esperar agrupar por categoría y cantidad de productos, se decidió dejar solo a un review_id, eliminando los demás. De esta manera dejé un review_id único asignado a un product_id.
 
 > Nota: Al mantener una fila por **product_id**, perdemos la granularidad de las reseñas individuales, pero simplifica el análisis de métricas por producto como promedio de rating, precio, descuento, etc.
 
-Finalmente, posterior a la limpieza de nulos y duplicados en esta tabla, se obtuvieron **1351** filas y **8** columnas.
+Finalmente, posterior a la limpieza de nulos y duplicados en esta tabla, se obtuvieron **1186** filas y **8** columnas.
 
 # **Detección y tratamiento de valores fuera de alcance**
 
@@ -106,9 +106,11 @@ Tabla limpia: 1186 filas x 12 columnas
 
 Se decidió agrupar por categorías principales y marcas, para conocer diferentes hallazgos de nuestro dataset.
 
-## Insights
+## Hallazgos
 
-Contamos con 9 categorías únicas principales, de las cuales podemos identificar cuáles tiene más cantidad de productos.
+### Categorías principales
+
+Contamos con 9 categorías únicas principales, de las cuales podemos identificar cuáles tienen más cantidad de productos.
 
 <img src="./visualizaciones/categorias.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
 
@@ -116,24 +118,7 @@ Contamos con 9 categorías únicas principales, de las cuales podemos identifica
 
 <img src="./visualizaciones/top3categoriasproductos.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
 
-<br>
-
-<img src="./visualizaciones/marcas_satisfaccion.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
-
-<br>
-
-<img src="./visualizaciones/top5_por_categoria.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
-
-<br>
-
-<img src="./visualizaciones/productos_vs_rating.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
-
-El número de productos que ofrece una marca no muestra relación con la calificación promedio de sus productos. Algunas marcas con gran variedad no necesariamente son las mejor evaluadas.
-
-<br>
-<img src="./visualizaciones/descuento_vs_rating.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
-
-<br>
+### Categorías con precios promedio
 
 <img src="./visualizaciones/categorias_precios.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
 
@@ -142,3 +127,35 @@ El número de productos que ofrece una marca no muestra relación con la calific
 - Precio promedio más bajo → La categoría más accesible en términos de costo.
 
 - Mayor descuento promedio → La categoría donde las ofertas/promociones son más agresivas, lo que puede indicar alta competencia o estrategias de marketing.
+
+### Conociendo las marcas que manejamos
+
+<img src="./visualizaciones/marcas_satisfaccion.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+<br>
+
+<img src="./visualizaciones/top5_por_categoria.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+### Top 15 marcas y sus puntuaciones promedio
+
+<img src="./visualizaciones/productos_vs_rating.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+El número de productos que ofrece una marca no muestra relación con la calificación promedio de sus productos. Algunas marcas con gran variedad no necesariamente son las mejor evaluadas.
+
+### Porcentaje de descuento y puntuaciones
+
+<img src="./visualizaciones/descuento_vs_rating.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+### Número de reseñas y puntuaciones
+
+<img src="./visualizaciones/resenas_vs_rating.png" alt="Texto alternativo"  style="display: block; margin: 0 auto;">
+
+# Conclusiones
+
+- `Diversificar productos en distintas categorías como Musical Instruments, Health&Personal Care, HomeImprovement.`
+
+- `Diversificar productos con precios variados en categorías como Toys&Games, HomeImprovement, que pueden tener esa flexibilidad.`
+
+- `Mayores descuentos no implican mejores puntuaciones en reseñas.`
+
+- `El número de reseñas no se relaciona con las puntuaciones.`
