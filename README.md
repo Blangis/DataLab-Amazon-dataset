@@ -15,11 +15,11 @@ El objetivo principal fue responder preguntas clave relacionadas con **categorí
 
 ## ❓ Preguntas de investigación
 
-1. [¿Qué tipos de productos se manejan en este dataset de Amazon?]  
-2. [¿Las marcas con más productos son también las mejor calificadas?] 
-3. [¿Qué categorías tienen los precios promedio más altos, más bajos y mayores descuentos?] 
-4. [¿Existe relación entre porcentaje de descuento y calificación promedio?]
-5. [¿Existe relación entre cantidad de reseñas y puntuación?]
+1. ¿Qué tipos de productos se manejan en este dataset de Amazon?  
+2. ¿Las marcas con más productos son también las mejor calificadas?
+3. ¿Qué categorías tienen los precios promedio más altos, más bajos y mayores descuentos?
+4. ¿Existe relación entre porcentaje de descuento y calificación promedio?
+5. ¿Existe relación entre cantidad de reseñas y puntuación?
 
 ---
 
