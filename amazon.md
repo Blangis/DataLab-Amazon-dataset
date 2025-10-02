@@ -14,8 +14,6 @@ Se busca responder:
 
 - [¿Existe relación entre cantidad de reseñas y puntuación?]()
 
-- ¿Cuáles son los productos mejor evaluados en cada rango de precio?
-
 # Productos
 
 Se realizó la carga de los archivos, se identificaron valores nulos y se manejaron aquellos encontrados, con base en las preguntas a responder.
