@@ -1,4 +1,4 @@
-# Análisis de ventas Amazon
+# Análisis de productos y puntuaciones de Amazon
 
 **Objetivo**: Identificar los factores que influyen en la satisfacción y compra de los clientes (precio, descuento, categoría, reseñas) para mejorar la estrategia de ventas y posicionamiento de productos en Amazon.
 
