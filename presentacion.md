@@ -14,13 +14,6 @@ Se busca responder:
 
 - [¿Existe relación entre cantidad de reseñas y puntuación?](#número-de-reseñas-y-puntuaciones)
 
-# 📊 Flujo de trabajo del análisis
-
-1. Dataset de productos → limpieza → productos limpios (productos_limpios.csv).
-2. Dataset de reseñas → limpieza → reseñas limpias (reseñas_limpias.csv).
-3. Ambos se unen por `product_id`.
-4. Resultado: dataset combinado (productos_reseñas.csv).
-
 # Validación de datos
 
 - Puntuaciones 1-5 ✅
