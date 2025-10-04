@@ -1,6 +1,6 @@
 # Análisis de productos y puntuaciones de Amazon
 
-**Objetivo**: Identificar las relaciones entre los productos disponibles y los datos de los clientes (precio, descuento, categoría, reseñas) para mejorar la estrategia de ventas y posicionamiento de productos en Amazon.
+**Objetivo**: Identificar las relaciones entre los productos disponibles y los datos de los clientes (puntuaciones, reseñas) para mejorar la estrategia de ventas y posicionamiento de productos en Amazon.
 
 Se busca responder:
 
